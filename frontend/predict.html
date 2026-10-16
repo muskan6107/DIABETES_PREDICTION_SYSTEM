@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Diabetes Prediction</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chatbot.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+    <div class="logo">
+
+        🩺 AI Diabetes Prediction
+
+    </div>
+
+    <ul>
+
+        <li><a href="index.html">Home</a></li>
+
+        <li><a href="predict.html" class="active">Prediction</a></li>
+
+        <li><a href="analytics.html">Analytics & Simulator</a></li>
+
+        <li><a href="diet.html">Diet & Meal Plan</a></li>
+
+        <li><a href="history.html">History</a></li>
+
+        <li><a href="about.html">About</a></li>
+
+        <li>
+
+            <button id="themeToggle" class="theme-btn">
+
+                <i class="fa-solid fa-moon"></i>
+
+            </button>
+
+        </li>
+
+    </ul>
+
+</nav>
+
+<!-- ================= PAGE TITLE ================= -->
+
+<section class="page-title">
+
+    <h1>
+
+        <i class="fa-solid fa-heart-pulse"></i>
+
+        Diabetes Prediction
+
+    </h1>
+
+    <p>
+
+        Fill in your health details below to estimate your diabetes risk
+        using our Machine Learning model.
+
+    </p>
+
+</section>
+
+<!-- ================= FORM ================= -->
+
+<div class="form-container">
+
+<div class="form-card">
+
+<!-- ================= PERSONAL INFORMATION ================= -->
+
+<!-- ================= DEMO AUTOFILL BAR ================= -->
+<div class="demo-buttons-bar" style="background:#f0f9ff;border:1px solid #bae6fd;padding:14px 20px;border-radius:14px;margin-bottom:25px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+    <span style="font-size:14px;font-weight:600;color:#0369a1;"><i class="fa-solid fa-wand-magic-sparkles"></i> Quick Test Autofill:</span>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button type="button" onclick="fillSampleData('normal')" style="background:#059669;color:white;border:none;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 2px 6px rgba(5,150,105,0.25);"><i class="fa-solid fa-circle-check"></i> Low Risk Demo</button>
+        <button type="button" onclick="fillSampleData('high')" style="background:#dc2626;color:white;border:none;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 2px 6px rgba(220,38,38,0.25);"><i class="fa-solid fa-triangle-exclamation"></i> High Risk Demo</button>
+    </div>
+</div>
+
+<h2>
+
+<i class="fa-solid fa-user"></i>
+
+Personal Information
+
+</h2>
+
+<div class="form-grid">
+
+<div>
+
+<label>
+
+<i class="fa-solid fa-user"></i>
+
+Full Name
+
+</label>
+
+<input
+type="text"
+id="name"
+placeholder="Enter Full Name">
+
+</div>
+
+<div>
+
+<label>
+
+<i class="fa-solid fa-cake-candles"></i>
+
+Age
+
+</label>
+
+<input
+type="number"
+id="age"
+placeholder="Enter Age">
+
+</div>
+
+<div>
+
+<label>
+
+<i class="fa-solid fa-venus-mars"></i>
+
+Gender
+
+</label>
+
+<select
+id="gender"
+onchange="togglePregnancy()">
+
+<option value="">
+
+Select Gender
+
+</option>
+
+<option value="male">
+
+Male
+
+</option>
+
+<option value="female">
+
+Female
+
+</option>
+
+</select>
+
+</div>
+
+<div
+id="pregnancyDiv"
+style="display:none;">
+
+<label>
+
+<i class="fa-solid fa-baby"></i>
+
+Number of Pregnancies
+
+</label>
+
+<input
+type="number"
+id="pregnancy"
+min="0"
+value="0"
+placeholder="Enter Number">
+
+</div>
+
+<div>
+
+<label>
+
+<i class="fa-solid fa-weight-scale"></i>
+
+Weight (kg)
+
+</label>
+
+<input
+type="number"
+id="weight"
+placeholder="Enter Weight">
+
+</div>
+
+<div>
+
+<label>
+
+<i class="fa-solid fa-ruler-vertical"></i>
+
+Height (cm)
+
+</label>
+
+<input
+type="number"
+id="height"
+placeholder="Enter Height">
+
+</div>
+
+<div>
+
+<label>
+
+<i class="fa-solid fa-calculator"></i>
+
+BMI (Auto Calculated)
+
+</label>
+
+<input
+type="text"
+id="bmi"
+readonly>
+
+</div>
+
+</div>
+
+<br><br>
+
+<!-- ================= MEDICAL INFORMATION ================= -->
+
+<h2>
+
+<i class="fa-solid fa-stethoscope"></i>
+
+Medical Information
+
+</h2>
+
+<div class="form-grid">
+    <div>
+
+<label>
+
+<i class="fa-solid fa-droplet"></i>
+
+Glucose Level (mg/dL)
+
+</label>
+
+<input
+type="number"
+id="glucose"
+placeholder="Enter Glucose Level">
+
+</div>
+
+<div>
+
+<label>
+
+<i class="fa-solid fa-heart-circle-bolt"></i>
+
+Blood Pressure (mmHg)
+
+</label>
+
+<input
+type="number"
+id="bloodPressure"
+placeholder="Enter Blood Pressure">
+
+</div>
+
+<div>
+
+<label>
+
+<i class="fa-solid fa-users"></i>
+
+Family History
+
+</label>
+
+<select id="familyHistory">
+
+<option value="0">
+
+No
+
+</option>
+
+<option value="1">
+
+Yes
+
+</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>
+
+<i class="fa-solid fa-heart"></i>
+
+Heart Disease
+
+</label>
+
+<select id="heartDisease">
+
+<option value="0">
+
+No
+
+</option>
+
+<option value="1">
+
+Yes
+
+</option>
+
+</select>
+
+</div>
+
+<div>
+
+<label>
+
+<i class="fa-solid fa-smoking"></i>
+
+Smoking
+
+</label>
+
+<select id="smoking">
+
+<option value="0">
+
+No
+
+</option>
+
+<option value="1">
+
+Yes
+
+</option>
+
+</select>
+
+</div>
+
+</div>
+
+<br><br>
+
+<!-- ================= BUTTON ================= -->
+
+<div style="text-align:center;">
+
+<button
+class="predict-btn"
+onclick="predict()">
+
+<i class="fa-solid fa-magnifying-glass-chart"></i>
+
+Predict Diabetes Risk
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div id="chatbot-container"></div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer style="text-align:center;margin:40px 0;color:#777;">
+
+<p>
+
+© 2026 AI Diabetes Prediction System
+
+</p>
+
+</footer>
+
+<!-- ================= SCRIPT ================= -->
+
+<script src="script.js"></script>
+<script src="theme.js"></script>
+<script src="chatbot.js"></script>
+
+</body>
+
+</html>

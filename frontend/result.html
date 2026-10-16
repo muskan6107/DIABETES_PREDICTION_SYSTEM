@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Diabetes Report</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="chatbot.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ========================= NAVBAR ========================= -->
+
+<nav>
+
+<div class="logo">
+
+🩺 AI Diabetes Prediction
+
+</div>
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="predict.html">Prediction</a></li>
+
+<li><a href="analytics.html">Analytics & Simulator</a></li>
+
+<li><a href="diet.html">Diet & Meal Plan</a></li>
+
+<li><a href="history.html">History</a></li>
+
+<li><a href="about.html">About</a></li>
+
+<li>
+
+<button id="themeToggle" class="theme-btn">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+</li>
+
+</ul>
+
+</nav>
+
+<!-- ========================= REPORT ========================= -->
+
+<section class="report-section">
+
+<div class="report-card">
+
+<div class="report-header">
+
+<h1>
+
+<i class="fa-solid fa-file-medical"></i>
+
+AI Diabetes Prediction Report
+
+</h1>
+
+<p>
+
+Generated using Machine Learning
+
+</p>
+
+</div>
+
+<!-- ========================= PATIENT INFO ========================= -->
+
+<h2 class="section-title">
+
+<i class="fa-solid fa-user"></i>
+
+Patient Information
+
+</h2>
+
+<div class="patient-grid">
+
+<div class="patient-box">
+
+<h4>Name</h4>
+
+<p id="patientName"></p>
+
+</div>
+
+<div class="patient-box">
+
+<h4>Age</h4>
+
+<p id="patientAge"></p>
+
+</div>
+
+<div class="patient-box">
+
+<h4>Gender</h4>
+
+<p id="patientGender"></p>
+
+</div>
+
+<div class="patient-box">
+
+<h4>BMI</h4>
+
+<p id="patientBMI"></p>
+
+</div>
+
+<div class="patient-box">
+
+<h4>BMI Category</h4>
+
+<p id="bmiCategory"></p>
+
+</div>
+
+<div class="patient-box">
+
+<h4>Glucose</h4>
+
+<p id="patientGlucose"></p>
+
+</div>
+
+<div class="patient-box">
+
+<h4>Blood Pressure</h4>
+
+<p id="patientBP"></p>
+
+</div>
+
+<div class="patient-box">
+
+<h4>Prediction ID</h4>
+
+<p id="predictionID"></p>
+
+</div>
+
+<div class="patient-box">
+
+<h4>Date & Time</h4>
+
+<p id="predictionDate"></p>
+
+</div>
+
+</div>
+<!-- ========================= RISK RESULT ========================= -->
+
+<h2 class="section-title">
+
+<i class="fa-solid fa-heart-pulse"></i>
+
+Prediction Result
+
+</h2>
+
+<div class="risk-section">
+
+<div class="risk-card">
+
+<div id="riskCircle" class="risk-circle">
+
+0%
+
+</div>
+
+<h2 id="riskLevel">
+
+Loading...
+
+</h2>
+
+<p class="risk-text">
+
+Estimated Diabetes Risk
+
+</p>
+
+</div>
+
+<div class="health-score-card">
+
+<h3>
+
+<i class="fa-solid fa-chart-line"></i>
+
+Health Score
+
+</h3>
+
+<div id="healthScore" class="health-score">
+
+0 / 100
+
+</div>
+
+<p>
+
+Higher score indicates better overall health condition.
+
+</p>
+
+</div>
+
+</div>
+
+<!-- ========================= RISK FACTORS ========================= -->
+
+<div class="report-box">
+
+<h2>
+
+<i class="fa-solid fa-triangle-exclamation"></i>
+
+Why this Prediction?
+
+</h2>
+
+<ul id="riskFactors" class="factor-list">
+
+<li>Loading...</li>
+
+</ul>
+
+</div>
+
+<!-- ========================= RECOMMENDATIONS ========================= -->
+
+<div class="report-box">
+
+<h2>
+
+<i class="fa-solid fa-notes-medical"></i>
+
+Health Recommendations
+
+</h2>
+
+<p id="recommendation">
+
+Loading...
+
+</p>
+
+</div>
+
+<!-- ========================= DISCLAIMER ========================= -->
+
+<div class="report-box disclaimer">
+
+<h2>
+
+<i class="fa-solid fa-circle-info"></i>
+
+Medical Disclaimer
+
+</h2>
+
+<p>
+
+This prediction is generated using a Machine Learning model
+trained on a diabetes dataset.
+
+It provides an estimated risk score only and
+<strong>should not be considered a medical diagnosis.</strong>
+
+Please consult a qualified healthcare professional
+for proper medical advice and laboratory confirmation.
+
+</p>
+
+</div>
+<!-- ========================= ACTION BUTTONS ========================= -->
+
+<div class="button-section">
+
+<button
+id="downloadBtn"
+class="action-btn download-btn">
+
+<i class="fa-solid fa-file-pdf"></i>
+
+Download PDF Report
+
+</button>
+
+<button
+id="copySummaryBtn"
+class="action-btn secondary-btn"
+style="background:#0284c7;color:white;">
+
+<i class="fa-solid fa-copy"></i>
+
+Copy Summary
+
+</button>
+
+<a
+href="predict.html"
+class="action-btn predict-btn">
+
+<i class="fa-solid fa-rotate-left"></i>
+
+Predict Again
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<div id="chatbot-container"></div>
+
+<!-- ========================= JSPDF & HTML2PDF ========================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<!-- ========================= RESULT JS ========================= -->
+<script src="result.js"></script>
+<script src="theme.js"></script>
+<script src="chatbot.js"></script>
+
+</body>
+
+</html>

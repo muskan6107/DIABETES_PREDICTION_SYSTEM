@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Analytics & Risk Simulator - AI Diabetes System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chatbot.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav>
+    <div class="logo">
+        🩺 AI Diabetes Prediction
+    </div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="predict.html">Prediction</a></li>
+        <li><a href="analytics.html" class="active">Analytics & Simulator</a></li>
+        <li><a href="diet.html">Diet & Meal Plan</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="about.html">About</a></li>
+        <li>
+            <button id="themeToggle" class="theme-btn">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </li>
+    </ul>
+</nav>
+
+<!-- ================= PAGE TITLE ================= -->
+<section class="page-title">
+    <h1>
+        <i class="fa-solid fa-sliders"></i>
+        Interactive Health Analytics & Risk Simulator
+    </h1>
+    <p>
+        Simulate how changing your glucose, weight, blood pressure, and age impacts your diabetes risk in real time!
+    </p>
+</section>
+
+<!-- ================= SIMULATOR SECTION ================= -->
+<div class="history-container">
+
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:30px; margin-bottom:40px;">
+        
+        <!-- Interactive Controls -->
+        <div class="form-card" style="margin:0;">
+            <h2 style="font-size:20px;margin-bottom:20px;color:#1e40af;">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Adjust Health Sliders
+            </h2>
+
+            <!-- Glucose Slider -->
+            <div style="margin-bottom:22px;">
+                <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:6px;color:#334155;">
+                    <span>🩸 Fasting Glucose</span>
+                    <span id="glucoseVal" style="color:#2563eb;font-weight:700;">110 mg/dL</span>
+                </div>
+                <input type="range" id="simGlucose" min="70" max="250" value="110" style="width:100%;accent-color:#2563eb;cursor:pointer;">
+                <div style="display:flex;justify-content:space-between;font-size:11px;color:#94a3b8;margin-top:2px;">
+                    <span>70 (Normal)</span>
+                    <span>125 (Prediabetes)</span>
+                    <span>250+ (High)</span>
+                </div>
+            </div>
+
+            <!-- BMI Slider -->
+            <div style="margin-bottom:22px;">
+                <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:6px;color:#334155;">
+                    <span>⚖️ BMI (Body Mass Index)</span>
+                    <span id="bmiVal" style="color:#2563eb;font-weight:700;">24.5 (Normal)</span>
+                </div>
+                <input type="range" id="simBMI" min="15" max="45" step="0.5" value="24.5" style="width:100%;accent-color:#2563eb;cursor:pointer;">
+                <div style="display:flex;justify-content:space-between;font-size:11px;color:#94a3b8;margin-top:2px;">
+                    <span>18.5 (Normal)</span>
+                    <span>25.0 (Overweight)</span>
+                    <span>30.0+ (Obese)</span>
+                </div>
+            </div>
+
+            <!-- Blood Pressure Slider -->
+            <div style="margin-bottom:22px;">
+                <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:6px;color:#334155;">
+                    <span>❤️ Blood Pressure</span>
+                    <span id="bpVal" style="color:#2563eb;font-weight:700;">120 mmHg</span>
+                </div>
+                <input type="range" id="simBP" min="80" max="180" value="120" style="width:100%;accent-color:#2563eb;cursor:pointer;">
+                <div style="display:flex;justify-content:space-between;font-size:11px;color:#94a3b8;margin-top:2px;">
+                    <span>90 (Optimal)</span>
+                    <span>130 (Elevated)</span>
+                    <span>180 (High Stage 2)</span>
+                </div>
+            </div>
+
+            <!-- Age Slider -->
+            <div style="margin-bottom:22px;">
+                <div style="display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:6px;color:#334155;">
+                    <span>👴 Age</span>
+                    <span id="ageVal" style="color:#2563eb;font-weight:700;">35 yrs</span>
+                </div>
+                <input type="range" id="simAge" min="18" max="85" value="35" style="width:100%;accent-color:#2563eb;cursor:pointer;">
+            </div>
+
+            <!-- Family History & Smoking Checkboxes -->
+            <div style="display:flex;gap:20px;margin-top:15px;flex-wrap:wrap;">
+                <label style="font-size:13.5px;font-weight:600;color:#334155;cursor:pointer;display:flex;align-items:center;gap:6px;">
+                    <input type="checkbox" id="simFamily" style="width:18px;height:18px;accent-color:#2563eb;"> Family History of Diabetes
+                </label>
+                <label style="font-size:13.5px;font-weight:600;color:#334155;cursor:pointer;display:flex;align-items:center;gap:6px;">
+                    <input type="checkbox" id="simSmoking" style="width:18px;height:18px;accent-color:#2563eb;"> Active Smoking Habit
+                </label>
+            </div>
+        </div>
+
+        <!-- Real-Time Gauge Output -->
+        <div class="form-card" style="margin:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(145deg, #ffffff, #f0f9ff);border:2px solid #bae6fd;">
+                <i class="fa-solid fa-chart-pie"></i> Simulated Real-Time Diabetes Risk
+            </h3>
+
+            <div id="simRiskCircle" class="circle" style="width:190px;height:190px;font-size:36px;box-shadow:0 10px 25px rgba(0,0,0,0.1);background:conic-gradient(#2ecc71 72deg, #e2e8f0 72deg);transition:all 0.3s ease;">
+                <div style="text-align:center;">
+                    <span id="simRiskPct" style="display:block;font-size:38px;font-weight:800;color:#0f172a;">20%</span>
+                    <small style="font-size:12px;color:#64748b;font-weight:600;">SIMULATED RISK</small>
+                </div>
+            </div>
+
+            <h2 id="simRiskLevel" style="margin:15px 0 8px;font-size:22px;color:#22c55e;">Low Risk</h2>
+            <p id="simDynamicTip" style="font-size:13px;color:#475569;max-width:320px;line-height:1.6;background:#ffffff;padding:12px 16px;border-radius:10px;border:1px solid #e2e8f0;">
+                Your parameters are in optimal range. Keep up a balanced diet and regular exercise.
+            </p>
+
+            <a href="predict.html" class="btn" style="margin-top:20px;font-size:14px;padding:10px 22px;border-radius:20px;">
+                <i class="fa-solid fa-stethoscope"></i> Calculate Real Diagnosis
+            </a>
+        </div>
+    </div>
+
+    <!-- Clinical Risk Factor Matrix -->
+    <div class="report-box" style="background:#ffffff;padding:30px;border-radius:16px;box-shadow:0 4px 18px rgba(0,0,0,0.06);margin-bottom:40px;">
+        <h2 style="color:#1e3a8a;margin-bottom:20px;"><i class="fa-solid fa-layer-group"></i> Clinical Factor Impact Matrix</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:20px;">
+            <div style="background:#f8fafc;padding:18px;border-radius:12px;border:1px solid #e2e8f0;">
+                <h4 style="color:#2563eb;margin-bottom:6px;"><i class="fa-solid fa-droplet"></i> Glucose Level Impact</h4>
+                <p style="font-size:12.5px;color:#64748b;line-height:1.5;">Fasting glucose >126 mg/dL adds up to <b>+35%</b> to your diabetes risk score.</p>
+            </div>
+            <div style="background:#f8fafc;padding:18px;border-radius:12px;border:1px solid #e2e8f0;">
+                <h4 style="color:#2563eb;margin-bottom:6px;"><i class="fa-solid fa-weight-scale"></i> Body Mass Index (BMI)</h4>
+                <p style="font-size:12.5px;color:#64748b;line-height:1.5;">BMI over 30 (Obesity) contributes <b>+20%</b> towards insulin resistance.</p>
+            </div>
+            <div style="background:#f8fafc;padding:18px;border-radius:12px;border:1px solid #e2e8f0;">
+                <h4 style="color:#2563eb;margin-bottom:6px;"><i class="fa-solid fa-heart-pulse"></i> Blood Pressure</h4>
+                <p style="font-size:12.5px;color:#64748b;line-height:1.5;">Hypertension (>130 mmHg) adds <b>+15%</b> metabolic strain.</p>
+            </div>
+            <div style="background:#f8fafc;padding:18px;border-radius:12px;border:1px solid #e2e8f0;">
+                <h4 style="color:#2563eb;margin-bottom:6px;"><i class="fa-solid fa-users"></i> Genetics & Lifestyle</h4>
+                <p style="font-size:12.5px;color:#64748b;line-height:1.5;">Family history and active smoking add <b>+10%</b> elevated risk each.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="chatbot-container"></div>
+
+<!-- ================= FOOTER ================= -->
+<footer style="text-align:center;padding:30px;color:#64748b;border-top:1px solid #e2e8f0;margin-top:50px;">
+    <p>© 2026 AI Diabetes Prediction System | Interactive Health Analytics</p>
+</footer>
+
+<script src="theme.js"></script>
+<script src="chatbot.js"></script>
+<script>
+// Simulator Logic
+document.addEventListener("DOMContentLoaded", () => {
+    const simGlucose = document.getElementById("simGlucose");
+    const simBMI = document.getElementById("simBMI");
+    const simBP = document.getElementById("simBP");
+    const simAge = document.getElementById("simAge");
+    const simFamily = document.getElementById("simFamily");
+    const simSmoking = document.getElementById("simSmoking");
+
+    const glucoseVal = document.getElementById("glucoseVal");
+    const bmiVal = document.getElementById("bmiVal");
+    const bpVal = document.getElementById("bpVal");
+    const ageVal = document.getElementById("ageVal");
+
+    const simRiskPct = document.getElementById("simRiskPct");
+    const simRiskLevel = document.getElementById("simRiskLevel");
+    const simRiskCircle = document.getElementById("simRiskCircle");
+    const simDynamicTip = document.getElementById("simDynamicTip");
+
+    function updateSimulation() {
+        const g = parseFloat(simGlucose.value);
+        const bmi = parseFloat(simBMI.value);
+        const bp = parseFloat(simBP.value);
+        const age = parseInt(simAge.value);
+        const fam = simFamily.checked;
+        const smoke = simSmoking.checked;
+
+        // Display Values
+        glucoseVal.innerText = `${g} mg/dL`;
+        
+        let bmiCat = "Normal";
+        if (bmi < 18.5) bmiCat = "Underweight";
+        else if (bmi >= 25 && bmi < 30) bmiCat = "Overweight";
+        else if (bmi >= 30) bmiCat = "Obese";
+        bmiVal.innerText = `${bmi} (${bmiCat})`;
+
+        bpVal.innerText = `${bp} mmHg`;
+        ageVal.innerText = `${age} yrs`;
+
+        // Calculate Risk Score
+        let risk = 12;
+        if (g > 100) risk += (g - 100) * 0.45;
+        if (bmi > 24.9) risk += (bmi - 24.9) * 2.2;
+        if (bp > 120) risk += (bp - 120) * 0.35;
+        if (age > 40) risk += (age - 40) * 0.3;
+        if (fam) risk += 12;
+        if (smoke) risk += 10;
+
+        risk = Math.min(98, Math.max(5, Math.round(risk)));
+
+        let level = "Low Risk";
+        let color = "#22c55e";
+        let tip = "Optimal parameters detected. Maintain daily activity and balanced whole foods diet.";
+
+        if (risk > 60) {
+            level = "High Risk";
+            color = "#ef4444";
+            tip = `⚠️ High Risk (${risk}%): Reducing glucose by ${Math.max(10, Math.round(g - 100))} mg/dL and lowering BMI by ${Math.max(2, (bmi - 24.5).toFixed(1))} can drop your risk level significantly!`;
+        } else if (risk > 30) {
+            level = "Moderate Risk";
+            color = "#f59e0b";
+            tip = `🟡 Moderate Risk (${risk}%): Moderate risk detected. Regular 30-min walking and limiting refined carbs will lower your risk back to optimal range.`;
+        }
+
+        simRiskPct.innerText = `${risk}%`;
+        simRiskLevel.innerText = level;
+        simRiskLevel.style.color = color;
+        simDynamicTip.innerHTML = tip;
+
+        simRiskCircle.style.background = `conic-gradient(${color} ${risk * 3.6}deg, #e2e8f0 ${risk * 3.6}deg)`;
+    }
+
+    [simGlucose, simBMI, simBP, simAge].forEach(el => el.addEventListener("input", updateSimulation));
+    [simFamily, simSmoking].forEach(el => el.addEventListener("change", updateSimulation));
+
+    updateSimulation();
+});
+</script>
+</body>
+</html>

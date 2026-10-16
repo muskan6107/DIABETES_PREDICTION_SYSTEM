@@ -1,0 +1,91 @@
+<!-- ================= HEALTHCARE AI CHATBOT ================= -->
+<div class="hc-toggle-wrapper">
+    <button id="hcToggle" class="hc-toggle" title="Chat with HealthCare AI">
+        <span class="hc-toggle-pulse"></span>
+        <i class="fa-solid fa-user-doctor"></i>
+    </button>
+</div>
+
+<div id="hcChat" class="hc-chat">
+    <!-- Header -->
+    <div class="hc-header">
+        <div class="hc-profile">
+            <div class="hc-avatar-wrap">
+                <div class="hc-avatar">
+                    <i class="fa-solid fa-user-doctor"></i>
+                </div>
+                <span class="hc-status-indicator"></span>
+            </div>
+            <div class="hc-info">
+                <h3>HealthCare AI <i class="fa-solid fa-circle-check" style="color:#60a5fa;font-size:14px;"></i></h3>
+                <p>
+                    <span class="hc-dot"></span>
+                    Online • AI Medical Assistant
+                </p>
+            </div>
+        </div>
+        <div class="hc-header-actions">
+            <button id="hcNewChat" class="hc-header-btn" title="Start New Fresh Chat">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+            <button id="hcHistoryToggle" class="hc-header-btn" title="View Old Chats">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+            </button>
+            <button id="hcClear" class="hc-header-btn" title="Clear Current View">
+                <i class="fa-solid fa-trash-can"></i>
+            </button>
+            <button id="hcClose" class="hc-header-btn hc-close" title="Close Chat">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Old Chats Panel (Drawer) -->
+    <div id="hcHistoryPanel" class="hc-history-panel">
+        <div class="hc-history-header">
+            <h4><i class="fa-solid fa-clock-rotate-left"></i> Saved Chat History</h4>
+            <button id="hcCloseHistory" class="hc-icon-sm" title="Back to Chat"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div id="hcHistoryList" class="hc-history-list"></div>
+        <div class="hc-history-footer">
+            <button id="hcClearAllSessions" class="hc-btn-danger"><i class="fa-solid fa-trash"></i> Delete All Old Chats</button>
+        </div>
+    </div>
+
+    <!-- Messages Container -->
+    <div id="hcMessages" class="hc-messages"></div>
+
+    <!-- Typing Indicator -->
+    <div id="hcTyping" class="hc-typing">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Quick Suggestions -->
+    <div class="hc-suggestions-wrapper">
+        <div class="hc-suggestions-title">Quick Topics & Help</div>
+        <div class="hc-suggestions">
+            <button class="hc-chip" data-cmd="how to use app"><i class="fa-solid fa-circle-question"></i> How to Use App</button>
+            <button class="hc-chip" data-cmd="what can app do"><i class="fa-solid fa-cubes"></i> What Can App Do?</button>
+            <button class="hc-chip" data-cmd="predict risk"><i class="fa-solid fa-stethoscope"></i> Predict Risk</button>
+            <button class="hc-chip" data-cmd="diet guide"><i class="fa-solid fa-utensils"></i> Diet Guide</button>
+            <button class="hc-chip" data-cmd="blood sugar"><i class="fa-solid fa-droplet"></i> Blood Sugar</button>
+            <button class="hc-chip" data-cmd="bmi guide"><i class="fa-solid fa-calculator"></i> BMI Guide</button>
+            <button class="hc-chip" data-cmd="view old chats"><i class="fa-solid fa-clock-rotate-left"></i> Old Chats</button>
+        </div>
+    </div>
+
+    <!-- Footer Input -->
+    <div class="hc-footer">
+        <div class="hc-input-wrap">
+            <input type="text" id="hcInput" placeholder="Ask your health question or app guide..." autocomplete="off">
+        </div>
+        <button id="hcSend" title="Send Message">
+            <i class="fa-solid fa-paper-plane"></i>
+        </button>
+    </div>
+    <div class="hc-disclaimer">
+        🔒 Confidential AI Assistant • Educational Purposes Only
+    </div>
+</div>

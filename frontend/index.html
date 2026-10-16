@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Diabetes Prediction System</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chatbot.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <div class="logo">
+
+            🩺 AI Diabetes Prediction
+
+        </div>
+
+        <ul>
+
+            <li><a href="index.html" class="active">Home</a></li>
+
+            <li><a href="predict.html">Prediction</a></li>
+
+            <li><a href="analytics.html">Analytics & Simulator</a></li>
+
+            <li><a href="diet.html">Diet & Meal Plan</a></li>
+
+            <li><a href="history.html">History</a></li>
+
+            <li><a href="about.html">About</a></li>
+
+            <li>
+
+                <button id="themeToggle" class="theme-btn">
+
+                    <i class="fa-solid fa-moon"></i>
+
+                </button>
+
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <!-- ================= HERO SECTION ================= -->
+
+    <section class="hero">
+
+        <div class="hero-left">
+
+            <h1>
+
+                AI-Based Diabetes Prediction System
+
+            </h1>
+
+            <p>
+
+                Predict the possibility of diabetes using Machine Learning
+                based on your health information.
+
+            </p>
+
+            <div class="buttons">
+
+                <a href="predict.html" class="btn">
+
+                    🚀 Get Started
+
+                </a>
+
+                <a href="about.html" class="btn secondary-btn">
+
+                    Learn More
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="hero-right">
+
+            <img
+                src="https://cdn-icons-png.flaticon.com/512/2785/2785482.png"
+                alt="Medical Illustration">
+
+        </div>
+
+    </section>
+        <!-- ================= ABOUT ================= -->
+
+    <section class="about-home">
+
+        <h2>About This Project</h2>
+
+        <p>
+
+            Diabetes is one of the fastest growing chronic diseases.
+            Early prediction helps patients take preventive action before
+            complications occur.
+
+            This project uses Machine Learning to estimate diabetes risk
+            using medical information like Age, BMI, Blood Pressure,
+            Glucose, Pregnancy, Heart Disease and Family History.
+
+        </p>
+
+    </section>
+
+    <!-- ================= FEATURES ================= -->
+
+    <section class="features">
+
+        <h2>Key Features</h2>
+
+        <div class="feature-container">
+
+            <div class="card">
+
+                <h3>🤖 AI Prediction</h3>
+
+                <p>
+
+                    Predict diabetes risk using a trained Machine Learning model.
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>📊 Detailed Risk Report</h3>
+
+                <p>
+
+                    View Low, Moderate or High Risk with percentage.
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>📄 Download PDF</h3>
+
+                <p>
+
+                    Save professional health report as PDF.
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <h3>💾 Prediction History</h3>
+
+                <p>
+
+                    Save previous prediction records.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= HOW IT WORKS ================= -->
+
+    <section class="workflow">
+
+        <h2>How It Works</h2>
+
+        <div class="workflow-grid">
+
+            <div class="step">
+
+                <div class="step-icon">📝</div>
+
+                <h3>01</h3>
+
+                <h4>Enter Health Details</h4>
+
+                <p>
+
+                    Enter your age, BMI, glucose level,
+                    blood pressure, family history and
+                    other health information.
+
+                </p>
+
+            </div>
+
+            <div class="step">
+
+                <div class="step-icon">🤖</div>
+
+                <h3>02</h3>
+
+                <h4>AI Analysis</h4>
+
+                <p>
+
+                    Our Machine Learning model analyzes your
+                    health data using the trained Random Forest algorithm.
+
+                </p>
+
+            </div>
+
+            <div class="step">
+
+                <div class="step-icon">📊</div>
+
+                <h3>03</h3>
+
+                <h4>Risk Prediction</h4>
+
+                <p>
+
+                    The system calculates your diabetes risk percentage
+                    and determines the risk category.
+
+                </p>
+
+            </div>
+
+            <div class="step">
+
+                <div class="step-icon">📄</div>
+
+                <h3>04</h3>
+
+                <h4>View & Download</h4>
+
+                <p>
+
+                    View detailed recommendations,
+                    save prediction history and
+                    download your report.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+<div id="chatbot-container"></div>
+    <!-- ================= JAVASCRIPT ================= -->
+<script src="script.js"></script>
+<script src="theme.js"></script>
+<script src="chatbot.js"></script>
+
+</body>
+</html>

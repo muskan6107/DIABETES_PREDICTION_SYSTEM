@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetic Meal & Lifestyle Planner - AI Diabetes System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chatbot.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav>
+    <div class="logo">
+        🩺 AI Diabetes Prediction
+    </div>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="predict.html">Prediction</a></li>
+        <li><a href="analytics.html">Analytics & Simulator</a></li>
+        <li><a href="diet.html" class="active">Diet & Meal Plan</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="about.html">About</a></li>
+        <li>
+            <button id="themeToggle" class="theme-btn">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </li>
+    </ul>
+</nav>
+
+<!-- ================= PAGE TITLE ================= -->
+<section class="page-title">
+    <h1>
+        <i class="fa-solid fa-utensils"></i>
+        Diabetic Meal & Lifestyle Planner
+    </h1>
+    <p>
+        Personalized nutrition plans, glycemic index guide, and daily hydration tracker.
+    </p>
+</section>
+
+<div class="history-container">
+
+    <!-- Goal Selection Bar -->
+    <div class="report-box" style="background:#ffffff;padding:25px;border-radius:16px;box-shadow:0 4px 18px rgba(0,0,0,0.06);margin-bottom:30px;">
+        <h3 style="color:#1e3a8a;margin-bottom:15px;"><i class="fa-solid fa-bullseye"></i> Select Your Target Health Goal:</h3>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <button class="goal-btn active" onclick="setGoal('control')" id="btnControl"><i class="fa-solid fa-droplet"></i> Blood Sugar Control</button>
+            <button class="goal-btn" onclick="setGoal('prevention')" id="btnPrevent"><i class="fa-solid fa-shield-heart"></i> Risk Prevention</button>
+            <button class="goal-btn" onclick="setGoal('weightloss')" id="btnWeight"><i class="fa-solid fa-weight-loss"></i> Weight Management</button>
+            <button class="goal-btn" onclick="setGoal('highprotein')" id="btnProtein"><i class="fa-solid fa-egg"></i> High Protein Diabetic Plan</button>
+        </div>
+    </div>
+
+    <!-- Meal Plan Display Grid -->
+    <div style="display:grid;grid-template-columns: 2fr 1fr; gap:30px; margin-bottom:40px;">
+
+        <!-- Meal Schedule -->
+        <div class="form-card" style="margin:0;">
+            <h2 style="font-size:20px;margin-bottom:20px;color:#1e40af;display:flex;justify-content:space-between;align-items:center;">
+                <span><i class="fa-solid fa-calendar-day"></i> 7-Day Meal Schedule</span>
+                <span id="planBadge" style="font-size:12px;background:#dbeafe;color:#1e40af;padding:4px 12px;border-radius:15px;font-weight:600;">Blood Sugar Control</span>
+            </h2>
+
+            <div id="mealScheduleContainer" style="display:flex;flex-direction:column;gap:16px;">
+                <!-- Dynamically Populated Meals -->
+            </div>
+        </div>
+
+        <!-- Right Side Tracker & Superfoods -->
+        <div style="display:flex;flex-direction:column;gap:25px;">
+
+            <!-- Water Tracker -->
+            <div class="form-card" style="margin:0;background:linear-gradient(135deg, #f0f9ff, #e0f2fe);border:1.5px solid #bae6fd;text-align:center;">
+                <h3 style="color:#0369a1;font-size:16px;margin-bottom:10px;"><i class="fa-solid fa-glass-water"></i> Daily Water Tracker</h3>
+                <p style="font-size:12px;color:#475569;margin-bottom:12px;">Goal: 8 Glasses (2.0 Liters)</p>
+                <div style="font-size:36px;font-weight:800;color:#0284c7;margin-bottom:10px;" id="waterCount">0 / 8</div>
+                
+                <div style="width:100%;height:14px;background:#cbd5e1;border-radius:10px;overflow:hidden;margin-bottom:15px;">
+                    <div id="waterBar" style="width:0%;height:100%;background:#0284c7;transition:width 0.3s ease;"></div>
+                </div>
+
+                <div style="display:flex;justify-content:center;gap:10px;">
+                    <button onclick="addWater()" style="background:#0284c7;color:white;border:none;padding:10px 18px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 3px 10px rgba(2,132,199,0.3);">
+                        <i class="fa-solid fa-plus"></i> Drink 1 Glass
+                    </button>
+                    <button onclick="resetWater()" style="background:#e2e8f0;color:#475569;border:none;padding:10px 16px;border-radius:20px;font-size:12.5px;font-weight:600;cursor:pointer;">
+                        <i class="fa-solid fa-rotate-left"></i> Reset
+                    </button>
+                </div>
+            </div>
+
+            <!-- Superfoods Checklist -->
+            <div class="form-card" style="margin:0;">
+                <h3 style="color:#1e3a8a;font-size:16px;margin-bottom:15px;"><i class="fa-solid fa-basket-shopping"></i> Diabetic Superfoods</h3>
+                <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;color:#334155;">
+                    <label style="cursor:pointer;"><input type="checkbox" checked> 🥦 Spinach & Broccoli (Low GI)</label>
+                    <label style="cursor:pointer;"><input type="checkbox" checked> 🫐 Blueberries & Apples</label>
+                    <label style="cursor:pointer;"><input type="checkbox" checked> 🥑 Avocados & Healthy Fats</label>
+                    <label style="cursor:pointer;"><input type="checkbox"> 🫘 Beans & Lentils</label>
+                    <label style="cursor:pointer;"><input type="checkbox"> 🌾 Oats & Quinoa</label>
+                    <label style="cursor:pointer;"><input type="checkbox"> 🌰 Almonds & Walnuts</label>
+                    <label style="cursor:pointer;"><input type="checkbox"> 🐟 Salmon & Chia Seeds</label>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="chatbot-container"></div>
+
+<!-- ================= FOOTER ================= -->
+<footer style="text-align:center;padding:30px;color:#64748b;border-top:1px solid #e2e8f0;margin-top:50px;">
+    <p>© 2026 AI Diabetes Prediction System | Nutrition & Diet Guide</p>
+</footer>
+
+<script src="theme.js"></script>
+<script src="chatbot.js"></script>
+<script>
+const mealPlans = {
+    control: {
+        title: "Blood Sugar Control Plan",
+        meals: [
+            { time: "🌅 Breakfast (8:00 AM)", item: "Oatmeal cooked with almond milk, chia seeds, and cinnamon", gi: "Low GI • 280 kcal" },
+            { time: "🍎 Morning Snack (11:00 AM)", item: "1 Small Green Apple + 8 Almonds", gi: "Low GI • 110 kcal" },
+            { time: "🥗 Lunch (1:30 PM)", item: "Grilled Chicken/Tofu Salad with Spinach, Cucumber, Olive Oil & Brown Rice", gi: "Low GI • 420 kcal" },
+            { time: "☕ Evening Snack (5:00 PM)", item: "Green Tea + Roasted Chana (Chickpeas)", gi: "Low GI • 90 kcal" },
+            { time: "🌙 Dinner (8:00 PM)", item: "Baked Salmon or Lentil Soup with Steamed Broccoli", gi: "Low GI • 350 kcal" }
+        ]
+    },
+    prevention: {
+        title: "Diabetes Risk Prevention Plan",
+        meals: [
+            { time: "🌅 Breakfast", item: "2 Boiled Eggs + Whole Wheat Toast + Avocado", gi: "Low GI • 320 kcal" },
+            { time: "🍎 Morning Snack", item: "Greek Yogurt with Blueberries", gi: "Low GI • 140 kcal" },
+            { time: "🥗 Lunch", item: "Quinoa Bowl with Mixed Veggies and Kidney Beans", gi: "Low GI • 450 kcal" },
+            { time: "☕ Evening Snack", item: "Handful of Walnuts & Seeds", gi: "Low GI • 160 kcal" },
+            { time: "🌙 Dinner", item: "Grilled Vegetables + Paneer/Chicken Tikka", gi: "Low GI • 380 kcal" }
+        ]
+    },
+    weightloss: {
+        title: "Weight Management & Low Carb",
+        meals: [
+            { time: "🌅 Breakfast", item: "Vegetable Omelette / Sprouts Salad with Lemon", gi: "Very Low GI • 220 kcal" },
+            { time: "🍎 Morning Snack", item: "Cucumber & Carrot Sticks with Hummus", gi: "Low GI • 90 kcal" },
+            { time: "🥗 Lunch", item: "Big Bowl Salad with Grilled Protein & Cauliflower Rice", gi: "Low GI • 350 kcal" },
+            { time: "☕ Evening Snack", item: "Black Coffee / Herbal Tea + Chia Water", gi: "Zero Sugar • 30 kcal" },
+            { time: "🌙 Dinner", item: "Clear Vegetable & Tofu Soup", gi: "Low GI • 200 kcal" }
+        ]
+    },
+    highprotein: {
+        title: "High Protein Diabetic Plan",
+        meals: [
+            { time: "🌅 Breakfast", item: "Egg White Scramble / Moong Dal Chela + Cottage Cheese", gi: "High Protein • 380 kcal" },
+            { time: "🍎 Morning Snack", item: "Roasted Soybeans / Edamame", gi: "High Protein • 150 kcal" },
+            { time: "🥗 Lunch", item: "Grilled Chicken Breast / Soy Chunk Curry + Quinoa", gi: "High Protein • 520 kcal" },
+            { time: "☕ Evening Snack", item: "Whey / Plant Protein Shake with Water", gi: "High Protein • 130 kcal" },
+            { time: "🌙 Dinner", item: "Paneer/Tofu Stir Fry with Bell Peppers & Spinach", gi: "High Protein • 400 kcal" }
+        ]
+    }
+};
+
+let currentGlasses = parseInt(localStorage.getItem("hcWaterGlasses")) || 0;
+
+function updateWaterUI() {
+    const countEl = document.getElementById("waterCount");
+    const barEl = document.getElementById("waterBar");
+    if (countEl) countEl.innerText = `${currentGlasses} / 8`;
+    if (barEl) barEl.style.width = `${(currentGlasses / 8) * 100}%`;
+}
+
+function addWater() {
+    if (currentGlasses < 8) {
+        currentGlasses++;
+        localStorage.setItem("hcWaterGlasses", currentGlasses);
+        updateWaterUI();
+        if (currentGlasses === 8) {
+            alert("🎉 Congratulations! You reached your daily hydration goal of 8 glasses!");
+        }
+    } else {
+        alert("🎉 Daily hydration goal of 8 glasses reached!");
+    }
+}
+
+function resetWater() {
+    currentGlasses = 0;
+    localStorage.setItem("hcWaterGlasses", 0);
+    updateWaterUI();
+}
+
+function setGoal(goalKey) {
+    document.querySelectorAll(".goal-btn").forEach(btn => btn.classList.remove("active"));
+    
+    if (goalKey === 'control') document.getElementById("btnControl").classList.add("active");
+    if (goalKey === 'prevention') document.getElementById("btnPrevent").classList.add("active");
+    if (goalKey === 'weightloss') document.getElementById("btnWeight").classList.add("active");
+    if (goalKey === 'highprotein') document.getElementById("btnProtein").classList.add("active");
+
+    const plan = mealPlans[goalKey];
+    document.getElementById("planBadge").innerText = plan.title;
+
+    const container = document.getElementById("mealScheduleContainer");
+    container.innerHTML = "";
+
+    plan.meals.forEach(m => {
+        const div = document.createElement("div");
+        div.style.cssText = "background:#f8fafc;padding:16px;border-radius:12px;border:1.5px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;";
+        div.innerHTML = `
+            <div>
+                <h4 style="margin:0 0 4px;color:#1e3a8a;font-size:14px;">${m.time}</h4>
+                <p style="margin:0;font-size:13px;color:#334155;font-weight:500;">${m.item}</p>
+            </div>
+            <span style="background:#e0f2fe;color:#0369a1;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:15px;">${m.gi}</span>
+        `;
+        container.appendChild(div);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    setGoal('control');
+    updateWaterUI();
+});
+</script>
+
+<style>
+.goal-btn {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1.5px solid #cbd5e1;
+    padding: 10px 18px;
+    border-radius: 25px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.goal-btn.active, .goal-btn:hover {
+    background: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+</style>
+
+</body>
+</html>

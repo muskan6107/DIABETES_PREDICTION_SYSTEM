@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Prediction History</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="chatbot.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+<div class="logo">
+
+🩺 AI Diabetes Prediction
+
+</div>
+
+<ul>
+
+<li><a href="index.html">Home</a></li>
+
+<li><a href="predict.html">Prediction</a></li>
+
+<li><a href="analytics.html">Analytics & Simulator</a></li>
+
+<li><a href="diet.html">Diet & Meal Plan</a></li>
+
+<li><a href="history.html" class="active">History</a></li>
+
+<li><a href="about.html">About</a></li>
+
+<li>
+
+<button id="themeToggle" class="theme-btn">
+
+<i class="fa-solid fa-moon"></i>
+
+</button>
+
+</li>
+
+</ul>
+
+</nav>
+
+<!-- ================= PAGE TITLE ================= -->
+
+<section class="page-title">
+
+<h1>
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+Prediction History
+
+</h1>
+
+<p>
+
+View and manage all previous diabetes prediction reports.
+
+</p>
+
+</section>
+
+<!-- ================= HISTORY ================= -->
+
+<div class="history-container">
+
+<div class="report-box">
+
+<h2>
+
+<i class="fa-solid fa-database"></i>
+
+Prediction Records
+
+</h2>
+
+<p>
+
+Total Saved Predictions :
+
+<b id="totalRecords">0</b>
+
+</p>
+
+</div>
+
+<input
+
+type="text"
+
+id="searchBox"
+
+class="search-box"
+
+placeholder="🔍 Search by Patient Name..."
+
+onkeyup="searchHistory()">
+
+<div style="overflow-x:auto;">
+
+<table id="historyTable">
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Name</th>
+
+<th>Age</th>
+
+<th>Gender</th>
+
+<th>Glucose</th>
+
+<th>BP</th>
+
+<th>BMI</th>
+
+<th>Risk</th>
+
+<th>Level</th>
+
+<th>Date</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+</tbody>
+
+</table>
+
+</div>
+
+<br>
+
+<div class="button-section">
+
+<button
+class="action-btn download-btn"
+onclick="window.location.href='predict.html'">
+
+<i class="fa-solid fa-plus"></i>
+
+New Prediction
+
+</button>
+
+<button
+class="action-btn secondary-btn"
+style="background:#0284c7;color:white;"
+onclick="exportToCSV()">
+
+<i class="fa-solid fa-file-csv"></i>
+
+Export CSV Spreadsheet
+
+</button>
+
+<button
+class="action-btn predict-btn"
+onclick="clearHistory()">
+
+<i class="fa-solid fa-trash"></i>
+
+Clear History
+
+</button>
+
+</div>
+
+</div>
+
+<div id="chatbot-container"></div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<div class="footer-content">
+
+<h3>
+
+🩺 AI Diabetes Prediction System
+
+</h3>
+
+<p>
+
+This prediction history is stored locally in your browser for demonstration purposes.
+
+</p>
+
+<p>
+
+© 2026 AI Diabetes Prediction System | Developed using Flask, Python & Machine Learning
+
+</p>
+
+</div>
+
+</footer>
+
+<!-- ================= SCRIPTS ================= -->
+
+<script src="history.js"></script>
+<script src="theme.js"></script>
+<script src="chatbot.js"></script>
+
+</body>
+
+</html>
